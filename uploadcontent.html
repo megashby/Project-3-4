@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1> Upload Content </h1>
+<form id = 'uploadcontentform' action = "" method = "post">
+<table border = "0">
+	<tr>
+	<td><label>Please enter the name of the quiz</label></td><td><input name = 'name' type = "text" size = '50'/></td>
+	</tr>
+
+	<tr>
+	<td><label></label></td><td><label>Questions</label></td><td><label>Answer Choices</label></td><td><label>Correct Answer</label></td>
+	</tr>
+
+	<tr>
+	<td><label>Question 1</label></td><td><input name = 'question_1' type = 'text' size = '50'/></td><td><input name = 'answer_1_1' type = 'text' size = '20'/></td><td><input type="text" name="correct_1" size = '20'></td>
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_1_2' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_1_3' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td><label>Question 2</label></td><td><input name = 'question_2' type = 'text' size = '50'/></td><td><input name = 'answer_2_1' type = 'text' size = '20'/></td><td><input type="text" name="correct_2" size = '20'></td>
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_2_2' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_2_3' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td><label>Question 3</label></td><td><input name = 'question_3' type = 'text' size = '50'/></td><td><input name = 'answer_3_1' type = 'text' size = '20'/></td><td><input type="text" name="correct_3" size = '20'></td>	
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_3_2' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_3_3' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td><label>Question 4</label></td><td><input name = 'question_4' type = 'text' size = '50'/></td><td><input name = 'answer_4_1' type = 'text' size = '20'/></td><td><input type="text" name="correct_4" size = '20'></td>
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_4_2' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_4_3' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td><label>Question 5</label></td><td><input name = 'question_5' type = 'text' size = '50'/></td><td><input name = 'answer_5_1' type = 'text' size = '20'/></td><td><input type="text" name="correct_5" size = '20'></td>
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_5_2' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_5_3' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td><label>Question 6</label></td><td><input name = 'question_6' type = 'text' size = '50'/></td><td><input name = 'answer_6_1' type = 'text' size = '20'/></td><td><input type="text" name="correct_6" size = '20'></td>
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_6_2' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td></td><td></td><td><input name = 'answer_6_3' type = 'text' size = '20'/></td>
+	</tr>
+
+	<tr>
+	<td><input type = 'button' name = 'uploadbtn' value = "Upload"/></td>
+	</tr>
+
+</table>
+</form>
+</body>
+</html>
+
+<script type = "text/javascript">
+	document.getElementById('uploadcontentform').uploadbtn.onclick = upload;
+	function upload()
+	{	
+		// var text = "";
+		// var elt= document.getElementById('uploadcontentform');
+		// var name = elt.name.value;
+		// var question1 = elt.question_1.value;
+		// text += question1 + '\n';
+		// var answer11= elt.answer_1_1.value;
+		// var answer12 = elt.answer_1_2.value;
+		// var answer13 = elt.answer_1_3.value;
+		// var correct1 = elt.correct_1.value;
+
+		var name = "myfile.txt";
+		var text = "hello bopi";
+
+
+		var file = new Blob([text], {type: 'text/plain'});
+		if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, name);
+   		else{
+   			var a = document.createElement("a"), url = URL.createObjectURL(file);
+   			a.href = url;
+   			a.download = name;
+   			document.body.appendChild(a);
+   			a.click();
+   			setTimeout(function(){
+   				document.body.removeChild(a);
+   				window.URL.revokeObjectURL(url);
+   			}, 0);
+
+   		}
+	}
