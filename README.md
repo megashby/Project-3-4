@@ -1,2 +1,4 @@
-# Project-3-4
-Canvas-game-thin
+# Project-2
+# need node.js to install npm 
+# npm install
+# npm start

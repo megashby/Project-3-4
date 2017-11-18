@@ -1,0 +1,14 @@
+{
+  "name": "project-2",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node ./start-site.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/megashby/Project-2.git"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
