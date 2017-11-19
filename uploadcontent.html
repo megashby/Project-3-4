@@ -100,33 +100,75 @@
 	document.getElementById('uploadcontentform').uploadbtn.onclick = upload;
 	function upload()
 	{	
-		// var text = "";
-		// var elt= document.getElementById('uploadcontentform');
-		// var name = elt.name.value;
-		// var question1 = elt.question_1.value;
-		// text += question1 + '\n';
-		// var answer11= elt.answer_1_1.value;
-		// var answer12 = elt.answer_1_2.value;
-		// var answer13 = elt.answer_1_3.value;
-		// var correct1 = elt.correct_1.value;
+		var text = "";
+		var elt= document.getElementById('uploadcontentform');
+		var name = elt.name.value;
+		var question1 = elt.question_1.value;
+		text += question1 + '\n';
+		var answer11= elt.answer_1_1.value;
+		var answer12 = elt.answer_1_2.value;
+		var answer13 = elt.answer_1_3.value;
+		var correct1 = elt.correct_1.value;
+		text += answer11 +'\n' + answer12 + '\n' + answer13 + '\n' + correct1+'\n'
 
-		var name = "myfile.txt";
-		var text = "hello bopi";
+		var question2 = elt.question_2.value;
+		text += question2 + '\n';
+		var answer21= elt.answer_2_1.value;
+		var answer22 = elt.answer_2_2.value;
+		var answer23 = elt.answer_2_3.value;
+		var correct2 = elt.correct_2.value;
+		text += answer21 +'\n' + answer22 + '\n' + answer23 + '\n' + correct2+'\n'
+
+		var question3 = elt.question_3.value;
+		text += question3 + '\n';
+		var answer31= elt.answer_3_1.value;
+		var answer32 = elt.answer_3_2.value;
+		var answer33 = elt.answer_3_3.value;
+		var correct3 = elt.correct_3.value;
+		text += answer31 +'\n' + answer32 + '\n' + answer33 + '\n' + correct3+'\n'
+
+		var question4 = elt.question_4.value;
+		text += question4 + '\n';
+		var answer41= elt.answer_4_1.value;
+		var answer42 = elt.answer_4_2.value;
+		var answer43 = elt.answer_4_3.value;
+		var correct4 = elt.correct_4.value;
+		text += answer41 +'\n' + answer42 + '\n' + answer43 + '\n' + correct4+'\n'
+
+		var question5 = elt.question_5.value;
+		text += question5 + '\n';
+		var answer51= elt.answer_5_1.value;
+		var answer52 = elt.answer_5_2.value;
+		var answer53 = elt.answer_5_3.value;
+		var correct5 = elt.correct_5.value;
+		text += answer51 +'\n' + answer52 + '\n' + answer53 + '\n' + correct5+'\n'
+
+		var question6 = elt.question_6.value;
+		text += question6 + '\n';
+		var answer61= elt.answer_6_1.value;
+		var answer62 = elt.answer_6_2.value;
+		var answer63 = elt.answer_6_3.value;
+		var correct6 = elt.correct_6.value;	
+		text += answer61 +'\n' + answer62 + '\n' + answer63 + '\n' + correct6+'\n'	
+		window.alert(text);
+
+		// var name = "myfile.txt";
+		// var text = "hello bopi";
 
 
-		var file = new Blob([text], {type: 'text/plain'});
-		if (window.navigator.msSaveOrOpenBlob) // IE10+
-        window.navigator.msSaveOrOpenBlob(file, name);
-   		else{
-   			var a = document.createElement("a"), url = URL.createObjectURL(file);
-   			a.href = url;
-   			a.download = name;
-   			document.body.appendChild(a);
-   			a.click();
-   			setTimeout(function(){
-   				document.body.removeChild(a);
-   				window.URL.revokeObjectURL(url);
-   			}, 0);
+		// var file = new Blob(['Hello bopi'], {type: 'text/plain'});
+		// if (window.navigator.msSaveOrOpenBlob) // IE10+
+  //       window.navigator.msSaveOrOpenBlob(file, name);
+  //  		else{
+  //  			var a = document.createElement("a"), url = URL.createObjectURL(file);
+  //  			a.href = url;
+  //  			a.download = name;
+  //  			document.body.appendChild(a);
+  //  			a.click();
+  //  			setTimeout(function(){
+  //  				document.body.removeChild(a);
+  //  				window.URL.revokeObjectURL(url);
+  //  			}, 0);
 
-   		}
+  //  		}
 	}
