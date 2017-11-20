@@ -1,0 +1,22 @@
+body {  
+	background: url("http://3.bp.blogspot.com/-S048rPdINrU/UPvSmmvmGzI/AAAAAAAAHvE/8rH_wIBgnDE/s1600/London%20Skyline%20Wallp%20hd%20wallpaper.png");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+p {
+    font-size: 50px;
+    margin-bottom: 100px;
+}
+
+table {
+	font-size: 25px;
+}
+
+.submit {
+	background-color: #4CAF50;
+	margin-top: 25px;
+	font-size: 16px;
+}
