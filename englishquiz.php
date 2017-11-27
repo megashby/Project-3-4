@@ -38,7 +38,7 @@ if (empty($connect))
   var questions = new Array();
   var choices = new Array();
   var answers = Array();
-  readFile('./mathquiz.txt');
+  readFile('./englishquiz.txt');
 
   function readFile(file){
  
@@ -131,9 +131,13 @@ function showTotalScore() {
   alert(message)
   $username = document.getElementById('username').value;
   alert($username)
+  <?php
   $result = mysqli_query($connect, "SELECT englishScore FROM $table WHERE userName = $username");
+  ?>
   $totalenglish = correct + result;
+  <?php
   mysqli_query($connect, "UPDATE $table SET englishScore = '$totalmath' WHERE username = '$username'");
+  ?>
 
   correct = 0;
   var alltags=document.all? document.all : document.getElementsByTagName("*")

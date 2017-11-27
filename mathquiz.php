@@ -131,9 +131,13 @@ function showTotalScore() {
   alert(message)
   $username = document.getElementById('username').value;
   alert($username)
+  <?php
   $result = mysqli_query($connect, "SELECT mathScore FROM $table WHERE userName = $username");
+  ?>
   $totalmath = correct + result;
+  <?php
   mysqli_query($connect, "UPDATE $table SET mathScore = '$totalmath' WHERE username = '$username'");
+  ?>
 
   correct = 0;
   var alltags=document.all? document.all : document.getElementsByTagName("*")
