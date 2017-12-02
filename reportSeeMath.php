@@ -10,10 +10,10 @@ print <<<TOP
 TOP;
 
 // Connect to the MySQL database
-$host = "cs.utexas.edu";
+$host = "fall-2017.cs.utexas.edu";
 $user = "megashby";
-$pwd = "oMkC6_GE5N";
-$dbs = "cs329e_mitra_megashby";
+$pwd = "TAgfCdGw20";
+$dbs = "cs329e_megashby";
 $port = "3306";
 
 $connect = mysqli_connect ($host, $user, $pwd, $dbs, $port);
@@ -42,7 +42,7 @@ if (empty($connect))
 LOGIN;
 
 
-     $result = mysqli_query($connect, "SELECT lastName, firstName, mathScore FROM $table ORDER BY mathScore");
+     $result = mysqli_query($connect, "SELECT lastName, firstName, mathScore FROM $table ORDER BY mathScore DESC");
      print "<table border = '1' width = '75%'><tr><th> Last Name </th><th> First Name </th><th> Math Score </th></tr>";
      while ($row = $result->fetch_row())
           {

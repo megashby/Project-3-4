@@ -10,10 +10,10 @@ print <<<TOP
 TOP;
 
 // Connect to the MySQL database
-$host = "cs.utexas.edu";
+$host = "fall-2017.cs.utexas.edu";
 $user = "megashby";
-$pwd = "oMkC6_GE5N";
-$dbs = "cs329e_mitra_megashby";
+$pwd = "TAgfCdGw20";
+$dbs = "cs329e_megashby";
 $port = "3306";
 
 $connect = mysqli_connect ($host, $user, $pwd, $dbs, $port);
@@ -89,10 +89,10 @@ LOGIN;
 //  }
   // elseif (isset($seeall)){
      $result = mysqli_query($connect, "SELECT * FROM $table ORDER BY lastName, firstName");
-     print "<table border = '1' width = '75%'><tr><th> Last Name </th><th> First Name </th><th> Math Score </th><th> Science Score </th><th> English Score </th><th> Guilds </th></tr>";
+     print "<table border = '1' width = '75%'><tr><th> Username </th><th> Last Name </th><th> First Name </th><th> Math Score </th><th> Science Score </th><th> English Score </th><th> Guilds </th></tr>";
      while ($row = $result->fetch_row())
           {
-          print "<tr><td> $row[0] </td><td> $row[1] </td><td> $row[2] </td><td> $row[3] </td><td> $row[4] </td><td> $row[5] </td></tr>";
+          print "<tr><td> $row[0] </td><td> $row[1] </td><td> $row[2] </td><td> $row[3] </td><td> $row[4] </td><td> $row[5] </td><td> $row[6] </td></tr>";
            }
      print "</table>";
   // }

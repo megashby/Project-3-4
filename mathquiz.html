@@ -1,24 +1,9 @@
-<?php
-$host = "cs.utexas.edu";
-$user = "megashby";
-$pwd = "oMkC_GE5N";
-$port = "3306";
 
-$connect = mysqli_connect($host, $user, $pwd, $dbs, $port);
-$table = "students";
-if (empty($connect))
-{
- #die("mysqli_connect failed: ".mysqli_connect_error());
-}
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"> </script>
-	<!-- <script type="text/javascript" src="./protofunctions.js"></script> -->
-	<!-- <script src = "readFile3.js"></script> -->
 	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/> -->
 	<link rel="stylesheet" type="text/css" href="style.css"/>
 
@@ -26,10 +11,7 @@ if (empty($connect))
 </head>
 <body>
 
-	 	<h1 ><span> The Hardest English Quiz</span> </h1>
-
-
-<!-- <p> My quiz </p> -->
+	 	<h1 ><span> The Hardest Math Quiz</span> </h1>
 
 <script type="text/javascript">
 <!--
@@ -38,7 +20,7 @@ if (empty($connect))
   var questions = new Array();
   var choices = new Array();
   var answers = Array();
-  readFile('./englishquiz.txt');
+  readFile('./mathquiz.txt');
 
   function readFile(file){
  
@@ -78,13 +60,44 @@ if (empty($connect))
     }
 
     }    
-        
-
    rawFile.send(null);
    createQuiz()
 
 }
+var xhr;
+if (window.ActiveXObject)
+{
+  xhr = new ActiveXObject("Microsoft.XMLHTTP");
+}
+else if (window.XMLHttpRequest)
+{
+  xhr = new XMLHttpRequest();
+}
 
+function callServer(subject, subjectscore)
+{
+  var subject = subject;
+  var score = subjectscore;
+  var username = document.getElementById('username').value;
+
+  var url = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/databaseincrementscore.php?username="+username+"&subject="+subject+"&subjectscore="+score;
+
+
+  xhr.open('GET', url, true);
+  xhr.onreadystatechange = updatePage;
+  xhr.send(null);
+}
+
+function updatePage()
+{
+  if ((xhr.readyState == 4) && (xhr.status == 200))
+  {
+    var response = xhr.responseText;
+    var responsetext = 'Your new score in math is '
+
+    window.alert(responsetext.concat(response));
+  }
+}
   function createQuiz() {
 	// writes in the questions one at a time
     for(q=0;q<questions.length;q++) {
@@ -129,15 +142,9 @@ function showTotalScore() {
   totalQuestions = answers.length;
   message = "You scored " + correct + " out of " + totalQuestions + "\n";
   alert(message)
-  $username = document.getElementById('username').value;
-  alert($username)
-  <?php
-  $result = mysqli_query($connect, "SELECT englishScore FROM $table WHERE userName = $username");
-  ?>
-  $totalenglish = correct + result;
-  <?php
-  mysqli_query($connect, "UPDATE $table SET englishScore = '$totalmath' WHERE username = '$username'");
-  ?>
+  // $username = document.getElementById('username').value;
+  // alert($username)
+  callServer('math', correct);
 
   correct = 0;
   var alltags=document.all? document.all : document.getElementsByTagName("*")
@@ -145,6 +152,7 @@ function showTotalScore() {
       alltags[i].disabled = false;
   }
     }
+
 // after a user selects an answer choice and they are told if it's right or not the question is disabled so it cannot be answered twice.
 function disableQuestion(classNum) {
   var alltags=document.all? document.all:document.getElementsByTagName("*")
