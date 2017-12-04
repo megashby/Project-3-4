@@ -97,6 +97,36 @@
 </html>
 
 <script type = "text/javascript">
+
+var xhr;
+if (window.ActiveXObject)
+{
+  xhr = new ActiveXObject("Microsoft.XMLHTTP");
+}
+else if (window.XMLHttpRequest)
+{
+  xhr = new XMLHttpRequest();
+}
+function callServer(subject, subjectscore)
+{
+  var subject = subject;
+  var score = subjectscore;
+  var username = document.getElementById('username').value;
+  var url = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/databaseincrementscore.php?username="+username+"&subject="+subject+"&subjectscore="+score;
+  xhr.open('GET', url, true);
+  xhr.onreadystatechange = updatePage;
+  xhr.send(null);
+}
+function updatePage()
+{
+  if ((xhr.readyState == 4) && (xhr.status == 200))
+  {
+    var response = xhr.responseText;
+    var responsetext = 'Your new score in math is '
+    window.alert(responsetext.concat(response));
+  }
+}
+
 	document.getElementById('uploadcontentform').uploadbtn.onclick = upload;
 	function upload()
 	{	
@@ -110,7 +140,6 @@
 		var answer13 = elt.answer_1_3.value;
 		var correct1 = elt.correct_1.value;
 		text += answer11 +'\n' + answer12 + '\n' + answer13 + '\n' + correct1+'\n'
-
 		var question2 = elt.question_2.value;
 		text += question2 + '\n';
 		var answer21= elt.answer_2_1.value;
@@ -118,7 +147,6 @@
 		var answer23 = elt.answer_2_3.value;
 		var correct2 = elt.correct_2.value;
 		text += answer21 +'\n' + answer22 + '\n' + answer23 + '\n' + correct2+'\n'
-
 		var question3 = elt.question_3.value;
 		text += question3 + '\n';
 		var answer31= elt.answer_3_1.value;
@@ -126,7 +154,6 @@
 		var answer33 = elt.answer_3_3.value;
 		var correct3 = elt.correct_3.value;
 		text += answer31 +'\n' + answer32 + '\n' + answer33 + '\n' + correct3+'\n'
-
 		var question4 = elt.question_4.value;
 		text += question4 + '\n';
 		var answer41= elt.answer_4_1.value;
@@ -134,7 +161,6 @@
 		var answer43 = elt.answer_4_3.value;
 		var correct4 = elt.correct_4.value;
 		text += answer41 +'\n' + answer42 + '\n' + answer43 + '\n' + correct4+'\n'
-
 		var question5 = elt.question_5.value;
 		text += question5 + '\n';
 		var answer51= elt.answer_5_1.value;
@@ -142,7 +168,6 @@
 		var answer53 = elt.answer_5_3.value;
 		var correct5 = elt.correct_5.value;
 		text += answer51 +'\n' + answer52 + '\n' + answer53 + '\n' + correct5+'\n'
-
 		var question6 = elt.question_6.value;
 		text += question6 + '\n';
 		var answer61= elt.answer_6_1.value;
@@ -152,23 +177,4 @@
 		text += answer61 +'\n' + answer62 + '\n' + answer63 + '\n' + correct6+'\n'	
 		window.alert(text);
 
-		// var name = "myfile.txt";
-		// var text = "hello bopi";
-
-
-		// var file = new Blob(['Hello bopi'], {type: 'text/plain'});
-		// if (window.navigator.msSaveOrOpenBlob) // IE10+
-  //       window.navigator.msSaveOrOpenBlob(file, name);
-  //  		else{
-  //  			var a = document.createElement("a"), url = URL.createObjectURL(file);
-  //  			a.href = url;
-  //  			a.download = name;
-  //  			document.body.appendChild(a);
-  //  			a.click();
-  //  			setTimeout(function(){
-  //  				document.body.removeChild(a);
-  //  				window.URL.revokeObjectURL(url);
-  //  			}, 0);
-
-  //  		}
 	}
