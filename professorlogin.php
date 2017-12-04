@@ -6,6 +6,19 @@ print <<<PROFESSORLOGIN
 <title> Professor Login </title>
 <link rel = 'stylesheet' href = "./style.css">
 </head>
+<script>
+            function showPass()
+            {
+                var pass = document.getElementById('pass');
+                if(document.getElementById('check').checked)
+                    {
+                        pass.setAttribute('type', 'text');
+                    }
+                else{
+                    pass.setAttribute('type', 'password')
+                }
+            }
+        </script>
 <body>
 
 <p> Professor Login </p>
@@ -15,7 +28,7 @@ print <<<PROFESSORLOGIN
 <td> Enter Username </td><td><input type = "text" name = 'username' size = "30"/></td>
 </tr>
 <tr>
-<td> Enter Password </td><td><input type = "text" name = "password" size = "30"/></td>
+<td> Enter Password </td> <td> <input type = "password" id = "pass" name = "password" size = "30"/> Show password <input type = "checkbox" id = "check" onclick="showPass();"/></td>
 </tr>
 <tr>
 <td><input class = 'submit btn-gradient green' type = 'submit' value = "Submit"/></td>
