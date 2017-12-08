@@ -5,11 +5,12 @@
   <title> level 1 </title>
     <style>
       * {padding:0; margin: 0;}
-      canvas {background: #eee; display: block; margin: 0 auto; }
+      canvas {background: url(""); display: block; margin: 0 auto; }
       </style>
 </head>
 <p> try to hit the quadrilateral </p>
-<body>
+<body background = "https://i.pinimg.com/originals/84/da/32/84da322bbed00b96719a72767311a7af.jpg">
+
   <canvas id= "myCanvas" width= "480" height= "360>"</canvas>
   <script>
   var canvas = document.getElementById("myCanvas");
@@ -18,15 +19,36 @@
   var y = canvas.height-30;
   var dx = 2;
   var dy = -2;
+  var score = 0;
   var ballRadius = 10;
   var paddleHeight = 10;
   var paddleWidth = 75;
   var paddleX = (canvas.width-paddleWidth)/2;
   var rightPressed = false;
   var leftPressed = false;
+  var brickRowCount = 1;
+  var brickColumnCount = 1;
+  var brickWidth = 65;
+  var brickHeight = 65;
+  var brickPadding = 10;
+  var brickOffsetTop = 30;
+  var brickOffsetLeft = 30;
+  var bricks = [];
+  for(c=0; c<brickColumnCount; c++) {
+    bricks[c] = [];
+    for(r=0; r<brickRowCount; r++) {
+        bricks[c][r] = { x: 0, y: 0, status: 1 };
+    }
+  }
+
+  function Score() {
+    ctx.font = "20px Verdana"
+    ctx.fillStyle = "black";
+    ctx.fillText("Score: "+score, 8, 20);
+  }
   function drawSquare() {
     ctx.beginPath();
-    ctx.rect(30,30,65,65);
+    ctx.rect(30,40,65,65);
     ctx.fillStyle = "red";
     ctx.fill();
     ctx.closePath();
@@ -49,7 +71,7 @@
   function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "black";
     ctx.fill();
     ctx.closePath();
   }
@@ -60,14 +82,34 @@
     ctx.fill();
     ctx.closePath();
   }
+  function drawBricks() {
+    for(c=0; c<brickColumnCount; c++) {
+      for(r=0; r<brickRowCount; r++) {
+        if(bricks[c][r].status == 1) {
+              var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+              var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+              bricks[c][r].x = brickX;
+              bricks[c][r].y = brickY;
+              ctx.beginPath();
+              ctx.rect(brickX, brickY, brickWidth, brickHeight);
+              ctx.fillStyle = "red";
+              ctx.fill();
+              ctx.closePath();
+        }
+      }
+    }
+  }
   function draw(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawPaddle();
     drawPaddle();
+    drawBricks();
+    collisionDetection();
     drawTriag();
     drawCircle();
-    drawSquare();
+    Score();
+    //drawSquare();
     x += dx;
     y += dy;
     if(y + dy < ballRadius) {
@@ -111,6 +153,24 @@
       leftPressed = false;
     }
 
+  }
+  function collisionDetection() {
+      for(c=0; c<brickColumnCount; c++) {
+          for(r=0; r<brickRowCount; r++) {
+              var b = bricks[c][r];
+              if(b.status == 1) {
+                if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                    dy = -dy;
+                    b.status = 0;
+                    score += 10;
+                    if(score == 10) {
+                        alert("YOU WIN, CONGRATULATIONS!");
+                        document.location.reload();
+                    }
+                }
+              }
+          }
+      }
   }
   setInterval(draw, 10);
       </script>
