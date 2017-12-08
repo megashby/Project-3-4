@@ -6,11 +6,30 @@
     <style>
       * {padding:0; margin: 0;}
       canvas {background: "blue"; display: block; margin: 0 auto; }
+      .game-over {
+				position: absolute;
+				top: 210px;
+				left: 600px;
+				color: black;
+				font-family: Helvetica, sans-serif;
+				font-size: 30px;
+				cursor: default;
+				display: none;
+			}
+			.game-over span {
+				font-size: 20px;
+				cursor: pointer;
+				position: relative;
+				left: 50px;
+			}
+			.game-over span:hover {
+				color: #FFD700;
+			}
       </style>
 </head>
 <p> <font size = "30" face = "verdana"> try to hit the quadrilateral </font> </p>
 <body background = "https://i.pinimg.com/originals/84/da/32/84da322bbed00b96719a72767311a7af.jpg">
-
+	<div class="game-over" id="game-over">GAME OVER<p><span onclick= "restart()">Restart</span></p></div>
   <canvas id= "myCanvas" width= "480" height= "360" style="border: 5px solid black;"></canvas>
   <script>
   var canvas = document.getElementById("myCanvas");
@@ -38,6 +57,39 @@
     bricks[c] = [];
     for(r=0; r<brickRowCount; r++) {
         bricks[c][r] = { x: 0, y: 0, status: 1 };
+    }
+  }
+  var xhr;
+  if (window.ActiveXObject)
+  {
+    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  else if (window.XMLHttpRequest)
+  {
+    xhr = new XMLHttpRequest();
+  }
+
+  function callServer(subject, score)
+  {
+    var subject = subject;
+    var username = document.getElementById('username').value;
+
+    var url = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/databaseincrementscore.php?username="+username+"&subject="+subject+"&score="+score;
+
+
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = updatePage;
+    xhr.send(null);
+  }
+
+  function updatePage()
+  {
+    if ((xhr.readyState == 4) && (xhr.status == 200))
+    {
+      var response = xhr.responseText;
+      var responsetext = 'Your new score in math is '
+
+      window.alert(responsetext.concat(response));
     }
   }
 
@@ -120,9 +172,10 @@
         dy = -dy;
       }
       else {
-        alert("hmm, try to not let the ball touch the ground next time");
-        document.location.reload();
-        dy = -dy
+        gameOver();
+        dy = 0
+        dx = 0
+
       }
     }
     if (x + dx > canvas.width- ballRadius || x +dx < ballRadius) {
@@ -155,6 +208,15 @@
     }
 
   }
+  function gameOver() {
+		document.getElementById('game-over').style.display = "block";
+	}
+// Restart the game
+	function restart() {
+		document.getElementById('game-over').style.display = "none";
+    document.location.reload();
+
+	}
   function collisionDetection() {
       for(c=0; c<brickColumnCount; c++) {
           for(r=0; r<brickRowCount; r++) {
@@ -163,10 +225,15 @@
                 if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                     dy = -dy;
                     b.status = 0;
-                    score += 10;
-                    if(score == 10) {
-                        alert("YOU WIN, CONGRATULATIONS!");
-                        document.location.reload();
+                    score += 1;
+                    if(score == 1) {
+                        //alert("YOU WIN, CONGRATULATIONS!");
+                        gameOver();
+                        dy = 0
+                        dx = 0
+                        callServer("math", score);
+                        updatePage();
+
                     }
                 }
               }
@@ -175,4 +242,5 @@
   }
   setInterval(draw, 10);
       </script>
+  </body>
 </html>
