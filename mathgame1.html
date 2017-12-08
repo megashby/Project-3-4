@@ -120,8 +120,9 @@
         dy = -dy;
       }
       else {
-        alert("GAME OVER");
+        alert("hmm, try to not let the ball touch the ground next time");
         document.location.reload();
+        dy = -dy
       }
     }
     if (x + dx > canvas.width- ballRadius || x +dx < ballRadius) {
