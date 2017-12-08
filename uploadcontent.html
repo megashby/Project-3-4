@@ -88,7 +88,7 @@
 	</tr>
 
 	<tr>
-	<td><input type = 'button' name = 'uploadbtn' value = "Upload"/></td>
+	<td><input type = 'button' name = 'uploadbtn' value = "Upload" onclick = "upload()"/></td>
 	</tr>
 
 </table>
@@ -106,8 +106,10 @@ else if (window.XMLHttpRequest)
 {
   xhr = new XMLHttpRequest();
 }
+
 function callServer(nameQuiz, content)
 {
+	// alert(content);
   var url = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/uploadquizdatabase.php?nameQuiz="+nameQuiz+"&content="+content;
   xhr.open('GET', url, true);
   xhr.onreadystatechange = updatePage;
@@ -115,6 +117,8 @@ function callServer(nameQuiz, content)
 }
 function updatePage()
 {
+	// alert(xhr.readyState);
+	// alert(xhr.status);
   if ((xhr.readyState == 4) && (xhr.status == 200))
   {
     var response = xhr.responseText;
@@ -130,16 +134,16 @@ function uploadq(q1, a11, a12, a13, r1)
 		else{
 			var text = "";
 			var question1 = q1;
-			text += question1 + '\n';
+			text += question1 + '*';
 			var answer11= a11;
 			var answer12 = a12;
 			var answer13 = a13;
 			var correct1 = r1;
-			text += answer11 +'\n' + answer12 + '\n' + answer13 + '\n' + correct1+'\n'
+			text += answer11 +'*' + answer12 + '*' + answer13 + '*' + correct1+'*'
 			return text;
 			}
 	}
-	document.getElementById('uploadcontentform').uploadbtn.onclick = upload;
+	// document.getElementById('uploadcontentform').uploadbtn.onclick = upload();
 	function upload()
 	{	
 		var text = "";
@@ -189,7 +193,8 @@ function uploadq(q1, a11, a12, a13, r1)
 		var correct6 = elt.correct_6.value;	
 		text+=uploadq(question6, answer61, answer62, answer63, correct6)
 
+		// alert(text);
 		elt.reset();
-		window.alert(elt);
-		callServer(name, text)
+		// window.alert(elt);
+		callServer(name, text)}
 </script>
