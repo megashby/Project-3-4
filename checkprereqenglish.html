@@ -23,28 +23,27 @@ else if (window.XMLHttpRequest)
 
 function callServer(username)
 {
-  // alert(username);
-  var url = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/querydatabaseadvanmathsci.php?username="+username;
-
+  // alert(username)
+  var url = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/querydatabaseadvanenglish.php?username="+username;
 
   xhr.open('GET', url, true);
-  // alert(username)
   xhr.onreadystatechange = updatePage;
   xhr.send(null);
 }
 
 function updatePage()
 {
-  alert('blkjfds');
-  alert(xhr.readyState)
-  alert(xhr.status)
+  // alert(xhr.readyState);
+  // alert(xhr.status);
+
   if ((xhr.readyState == 4) && (xhr.status == 200))
   {
+    // alert('good state');
     var response = xhr.responseText;
 
     if (response == 'True'){
-      window.alert('you meet the prereqs');
-      window.location.href = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/advanmathsci.html";
+      // window.alert('you meet the prereqs');
+      window.location.href = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/englishquiz2.html";
 
     }
     else{
@@ -54,10 +53,9 @@ function updatePage()
 }
 
 function submitUsername() {
-  $username = document.getElementById('username').value;
-  // alert($username)
-  var subjects = ['science', 'math'];
-  callServer($username);
+   var username = document.getElementById('username').value;
+  // alert(username)
+  callServer(username);
     }
 </script>
 </body>
