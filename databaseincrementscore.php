@@ -30,27 +30,24 @@ while($row1 = $result -> fetch_row()){
 	$score = $row1[0];
 }
 
-// echo('this was your original score:');
-// echo $score;
-
-// echo ('new score');
-// echo $incremented;
-
-
 $incremented = $addpts + $score;
+$guilds = 'jkfdsjkldfsj';
 
 if ($score < 20 && $incremented >=20)
 {
 	
 	$result3 = mysqli_query($connect, "SELECT guilds FROM $table WHERE userName = \"$username\"");
+
 	while($row3 = $result3 -> fetch_row()){
 	$guilds = $row3[0];
 	}
-	if ($guilds = 'none'){
+
+	if ($guilds == 'none'){
 		$guilds = $subject ."wizards";
 	}
 	else{
-		$guilds.= $guilds .", ". $subject ."wizards";
+
+		$guilds.= ", ". $subject ."wizards";
 	}
 	mysqli_query($connect, "UPDATE $table SET guilds = \"$guilds\" WHERE username = '$username'");
 }

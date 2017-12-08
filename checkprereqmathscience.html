@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	   <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<p><input type = "text" value = "Enter Username" name = "username" id = "username" /></p>
+<p id = 'scores'></p>
+<p><input type="submit" value="Submit" class = "btn-gradient blue" onclick="submitUsername()" /></p>
+
+<script>
+var xhr;
+if (window.ActiveXObject)
+{
+  xhr = new ActiveXObject("Microsoft.XMLHTTP");
+}
+else if (window.XMLHttpRequest)
+{
+  xhr = new XMLHttpRequest();
+}
+
+function callServer(username)
+{
+  // var subjectlist = subjectlist;
+  // var username = document.getElementById('username').value;
+
+  var url = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/querydatabaseadvanmathsci.php?username="+username;
+
+
+  xhr.open('GET', url, true);
+  xhr.onreadystatechange = updatePage;
+  xhr.send(null);
+}
+
+function updatePage()
+{
+  if ((xhr.readyState == 4) && (xhr.status == 200))
+  {
+    var response = xhr.responseText;
+    // var responsetext = 'Your score is';
+    // alert(response);
+
+    // window.alert(responsetext.concat(response));
+    if (response == 'True'){
+      window.alert('you meet the prereqs');
+      window.location.href = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/advanmathsci.html";
+
+    }
+    else{
+      window.location.href = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/notqualified.html";
+    }
+  }
+}
+
+function submitUsername() {
+  $username = document.getElementById('username').value;
+  // alert($username)
+  var subjects = ['science', 'math'];
+  callServer($username);
+    }
+</script>
+</body>
+
+</html>

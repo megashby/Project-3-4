@@ -5,8 +5,22 @@ print <<<STUDENTLOGIN
 <head>
 <title> Student Login </title>
 <link rel = 'stylesheet' href = "./style.css">
+<script>
+	function showPass()
+	{
+		var pass = document.getElementById('pass');
+		if (document.getElementById('check').checked)
+		{
+			pass.setAttribute('type', 'text');
+		}
+		else
+		{
+			pass.setAttribute('type', 'password')
+		}
+	}
+</script>
 </head>
-<body>
+<body onload = "showPass()">
 
 <p> Student Login </p>
 <table width = '75%'>
@@ -15,7 +29,7 @@ print <<<STUDENTLOGIN
 <td> Enter Username </td><td> <input type = 'text' name = "username" size = "30"/></td>
 </tr>
 <tr>
-<td> Enter Password </td><td><input type = "text" name = "password" size = "30"/></td>
+<td> Enter Password </td><td><input type = "text" id = 'pass' name = "password" size = "30"/>Show password <input type = 'checkbox' id = 'check' onclick = 'showPass();'/> </td>
 </tr>
 <tr>
 <td><input class = 'submit btn-gradient green' type = 'submit' value = "Submit"/></td>
