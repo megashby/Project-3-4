@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>math game</title>
+		<style>
+			canvas {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				background: transparent;
+			}
+			#background {
+				z-index: -2;
+			}
+			#main {
+				z-index: -1;
+			}
+			#ship {
+				z-index: 0;
+			}
+		</style>
+	</head>
+	<body >
+		<p ALIGN = RIGHT> Press the down key to load ship </p>
+		<p ALIGN = RIGHT> Use left and right key to move, hit space to shoot <p>
+		<!-- The canvas for the panning background -->
+		<canvas id="background" width="1000" height="750">
+		</canvas>
+		<canvas id = "main" width = "1000" height = "1000">
+		</canvas>
+		<canvas id = "ship" width = "1000" height = "900">
+		</canvas>
+		<script src="mathgame3.js"></script>
+	</body>
+</html>
