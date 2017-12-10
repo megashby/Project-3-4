@@ -1,0 +1,114 @@
+
+<html>
+<head>
+<title> Student Login </title>
+<link rel = 'stylesheet' href = "./style.css">
+</head>
+<body onload = "start();">
+
+<p> Professor Login </p>
+<table width = '75%'>
+<form method = "post">
+<tr>
+<td> Enter Username </td><td> <input type = 'text' name = "username" id = 'username' size = "30"/></td>
+</tr>
+<tr>
+<td> Enter Password </td><td><input type = "text" id = 'pass' name = "password" size = "30"/>Show password <input type = 'checkbox' id = 'check' onclick = 'showPass();'/> </td>
+</tr>
+<tr>
+<td><input class = 'submit btn-gradient green' type = 'submit' value = "Submit" onclick = 'getData()'/></td>
+</tr>
+
+</form>
+</table>
+</body>
+</html>
+
+<script>
+
+
+// var username = document.getElementById('username').value;
+var password = document.getElementById('pass').value;
+var matches = [];
+
+	function start(){
+		// getData();
+		showPass();
+	}
+
+	function showPass()
+	{
+		var pass = document.getElementById('pass');
+		if (document.getElementById('check').checked)
+		{
+			pass.setAttribute('type', 'text');
+		}
+		else
+		{
+			pass.setAttribute('type', 'password')
+		}
+	}
+
+	function checkUsername(matches)
+	{
+		var username = document.getElementById('username').value;
+		var password = document.getElementById('pass').value;
+
+		// alert(username);
+		// alert(matches);
+	 	for (var i = 0; i < matches.length; i ++)
+	 	{
+	 		// alert(matches[i])
+	 		var key = (matches[i][0]);
+	 		key = String(key);
+	 		var value = String(matches[i][1]);
+	 		value = value.trim();
+	 		// alert(value);
+	 		username = String(username);
+	 		password = String(password);
+	 		password = password.trim();
+	 		if (username === key)
+	 		{
+	 			if (password === value){
+	 				return true;
+	 			}
+	 		}
+	 	}	
+	 	return false;
+	 }
+
+	 function getData(){
+	 	var xmlhttp;
+	 	if(window.XMLHttpRequest){
+	 		xmlhttp = new XMLHttpRequest();
+	 	}
+	 	else{
+	 		xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+	 	}
+
+	 	xmlhttp.onreadystatechange = function(){
+	 		if (xmlhttp.readyState == 4){
+	 			var lines = xmlhttp.responseText;
+	 			intoArray(lines);
+	 		}
+	 	}
+	 	xmlhttp.open("GET", "professorpasswd.txt", true);
+	 	xmlhttp.send();
+	 }
+
+
+	 function intoArray(lines){
+	 	var array = lines.split("\n");
+	 	var array1 = [];
+	 	var array2 = [];
+
+	 	for (var i = 0; i<array.length; i++){
+	 		matches.push(array[i].split(":"));
+	 	}
+	 	// alert(matches);
+	 	if(checkUsername(matches) == true){
+	 		window.location="http://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/professorhomepage.html";
+	 	}
+	 }
+
+</script>
