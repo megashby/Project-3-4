@@ -44,7 +44,7 @@ demo.gameQuiz.prototype = {
         //  a 'Access-Control-Allow-Origin' header must be present on the server.
         //  No parsing of the text file is performed, it's literally just the raw data.
 
-        game.load.text('txt', 'mathquiz.txt');
+        game.load.text('txt', 'mainquiz.txt');
     },
     
     create: function(){
