@@ -1,14 +1,5 @@
 <?php
 
-print <<<TOP
-<html>
-<head>
-<title> View Students </title>
-</head>
-<body>
-<h3> View Students </h3>
-TOP;
-
 // Connect to the MySQL database
 $host = "fall-2017.cs.utexas.edu";
 $user = "megashby";
@@ -28,6 +19,7 @@ if (empty($connect))
      <html>
      <head>
      <title> See Info</title>
+     <link rel = 'stylesheet' href = "./style.css">
      </head>
      <body>
      <table width = "75%">
@@ -35,17 +27,46 @@ if (empty($connect))
      <tr>
      <td> Username </td>
      <td><input name = 'username' type = 'text' size = '30'/></td>
+     </tr>
+     <tr>
+     <td> Password </td>
+     <td><input name = 'password' id = 'pass' type = 'password' size = '30'/></td>
+     </tr>
      <tr>
      <td><input type = "submit" value = "Submit"/></td>
      </tr>
      </form>
      </table>
-     </body>
-     </html>
 LOGIN;
 
 extract ($_POST);
  $username = $_POST['username'];
+ $password = $_POST['password'];
+
+
+ $matches = Array();
+ $usernamefound = false;
+ $fh = fopen("./studentpasswd.txt", "r");
+
+ while (!feof($fh))
+ {
+ 	$line = fgets($fh);
+ 	$line = trim($line);
+ 	$line = explode(":", $line);
+ 	$matches[$line[0]] = $line[1];
+ }
+ fclose($fh);
+
+ foreach($matches as $key => $value)
+ {
+ 	if ($username == $key){
+ 		$usernamefound = true;
+ 	}
+ }
+
+
+ if ($usernamefound == true && $matches[$username] == $password && isset($_POST['username']))
+ {
 
 
      $result = mysqli_query($connect, "SELECT * FROM $table WHERE username=\"$username\"");
@@ -56,7 +77,7 @@ extract ($_POST);
            }
      print "</table>";
   // }
-
+}
 
 mysqli_close($connect);
 
