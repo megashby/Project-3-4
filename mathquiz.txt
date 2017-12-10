@@ -1,35 +1,30 @@
-Is addition communtative?
-yes
-no
-only with positive integers
-yes
-What is 3 + 3?
-7
-9
-6
-6
-Why can't you divide by zero?
-idk you just can't
-it makes values undefined
-blah
-idk you just can't
-Are there different sized infinities?
-yes
-no
-infinities cannot be defined by size and are thus defined by cardinality
-infinities cannot be defined by size and are thus defined by cardinality
-What is 0 - 6?
--6
-jkldfs
-jj
--6
-Is math the best major?
-obviously
-sometimes
-uhhh
-obviously
-Can Maxim define modular subtraction?
-given infinite amounts of time, yes
-OH GOD NO
-plz stop
-OH GOD NO
+How many days and hours are equal to 121 hours?
+11 days
+10 days 1 hour
+5 days 1 hour
+5 days 1 hour
+What number must be multiplied by 4 to make the sum of 44?
+4.4
+11
+10.1
+11
+Can you write 10:02 p.m. as a 24-hour time?
+2202
+1002
+2002
+2202
+The interior angles of a triangle always equal 180 degrees. If angle A is 45 degrees and angle B is 90 degrees, how many degrees is angle C equal to?
+55
+45
+225
+45
+What number should appear next in the following series: 3, 9, 27, 81, __?
+245
+729
+243
+243
+Henry pays $10 for 4 balloons, how much is each balloon?
+$4.00
+$1.25
+$2.50
+$2.50
