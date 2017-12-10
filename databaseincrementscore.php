@@ -52,6 +52,24 @@ if ($score < 20 && $incremented >=20)
 	mysqli_query($connect, "UPDATE $table SET guilds = \"$guilds\" WHERE username = '$username'");
 }
 
+if ($score < 50 && $incremented >=50)
+{
+	
+	$result3 = mysqli_query($connect, "SELECT guilds FROM $table WHERE userName = \"$username\"");
+
+	while($row3 = $result3 -> fetch_row()){
+	$guilds = $row3[0];
+	}
+
+	if ($guilds == 'none'){
+		$guilds = $subject ."sorcerers";
+	}
+	else{
+
+		$guilds.= ", ". $subject ."sorcerers";
+	}
+	mysqli_query($connect, "UPDATE $table SET guilds = \"$guilds\" WHERE username = '$username'");
+}
 
 mysqli_query($connect, "UPDATE $table SET $column = \"$incremented\" WHERE username = '$username'");
 
