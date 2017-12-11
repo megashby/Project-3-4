@@ -44,9 +44,7 @@
   <div class="game-over2" id="game-over2"><p><span onclick= "location.href = 'gameshomepage.html' ">Return to homepage</span></p></div>
   <canvas id= "myCanvas" width= "480" height= "360" style="border: 5px solid black;"></canvas>
   <script>
-  document.writeln('<p><input type = "text" value = "Enter Username" name = "username" id = "username" /></p>');
-  // writes the submit button at the end of the quiz
-  document.writeln('<p><input type="submit" value="Show Score" class = "btn btn-info" id= "ad_button" onclick="showTotalScore()" /></p><p style="display:none"></p>');
+
 
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
@@ -246,7 +244,9 @@
                     b.status = 0;
                     score += 1;
                     if(score == 1) {
-                        //alert("YOU WIN, CONGRATULATIONS!");
+                        document.writeln('<p><input type = "text" value = "Enter Username" name = "username" id = "username" /></p>');
+                      // writes the submit button at the end of the quiz
+                        document.writeln('<p><input type="submit" value="Show Score" class = "btn btn-info" id= "ad_button" onclick="showTotalScore()" /></p><p style="display:none"></p>');
                         gameOver();
                         dy = 0
                         dx = 0
