@@ -86,6 +86,7 @@
   function callServer(subject, score)
   {
     var subject = subject;
+    var score = score;
     var username = document.getElementById('username').value;
 
     var url = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/databaseincrementscore.php?username="+username+"&subject="+subject+"&score="+score;
@@ -244,10 +245,10 @@
                     b.status = 0;
                     score += 1;
                     if(score == 1) {
+                        gameOver();
                         document.writeln('<p><input type = "text" value = "Enter Username" name = "username" id = "username" /></p>');
                       // writes the submit button at the end of the quiz
                         document.writeln('<p><input type="submit" value="Show Score" class = "btn btn-info" id= "ad_button" onclick="showTotalScore()" /></p><p style="display:none"></p>');
-                        gameOver();
                         dy = 0
                         dx = 0
 
