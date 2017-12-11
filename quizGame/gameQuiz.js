@@ -1,4 +1,4 @@
-var demo = {};
+
 var text;
 var question;
 var correct_ans;
@@ -16,7 +16,8 @@ var scoreText;
 var score = 0;
 var music;
 
-var style = {font: '18px Arial', fill: '#00000'};
+
+var style = {font: '22px Arial', fill: '#00000'};
 
 //This is the core game area
 //var emitter;
@@ -44,7 +45,7 @@ demo.gameQuiz.prototype = {
         //  a 'Access-Control-Allow-Origin' header must be present on the server.
         //  No parsing of the text file is performed, it's literally just the raw data.
 
-        game.load.text('txt', 'mainquiz.txt');
+        game.load.text('txt', quiz);
     },
     
     create: function(){
@@ -72,7 +73,7 @@ demo.gameQuiz.prototype = {
         
         game.stage.backgroundColor = '#dabbed';
         game.scale.scleMode = Phaser.ScaleManager.SHOW_ALL;
-        scoreText = game.add.text(1050, 675, 'SCORE: ' + score, {font: '18px Arial', fill: '#000'});
+        scoreText = game.add.text(450, 50, 'SCORE: ' + score, {font: '22px Arial', fill: '#000'});
 
         var txt = game.cache.getText('txt');
         var lines = txt.split('\n');
@@ -107,7 +108,7 @@ demo.gameQuiz.prototype = {
         }
 
         text = txt.split('\n');
-        var style = {font: '18px Arial', fill: '#00000'};
+        var style = {font: '22px Arial', fill: '#00000'};
         
         counter = 0;
         newRound(questions, answers, counter);
@@ -287,7 +288,7 @@ function endRound(){
         Fans_ball.kill()
     }
     if (typeof correct_ball !== "undefined"){
-        Nans_ball.kill()
+        correct_ball.kill()
     }
     questionText.kill()
 }
