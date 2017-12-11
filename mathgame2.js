@@ -552,6 +552,7 @@ function Ship() {
     else {
       this.alive = false;
       game.gameOver();
+
     }
 
 		if (KEY_STATUS.space && counter >= fireRate && !this.isColliding) {
@@ -580,6 +581,7 @@ function Enemy() {
 	this.alive = false;
 	this.collidableWith = "bullet";
 	this.type = "enemy";
+
 
 	/*
 	 * Sets the Enemy values
@@ -629,11 +631,8 @@ function Enemy() {
 		}
 		else {
       game.playerScore += 2;
-			return true;
-      if (game.playerScore == 36){
-          game.gameOver();
+      return true;
       }
-		}
 	};
 
 	/*
@@ -785,6 +784,11 @@ function Game() {
 function animate() {
 	// Insert objects into quadtree
   document.getElementById("score").innerHTML =game.playerScore;
+  if (game.playerScore == 20) {
+    game.ship.alive = false;
+    game.gameOver();
+
+  }
 	game.quadTree.clear();
 	game.quadTree.insert(game.ship);
 	game.quadTree.insert(game.ship.bulletPool.getPool());
