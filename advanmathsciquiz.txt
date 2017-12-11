@@ -1,30 +1,30 @@
-What is 2+2?
-4
-5
-6
-4
-What is 3+3?
-6
-7
-8
-6
-What is 4+4?
-8
-9
-7
-8
-What is the ocean made of?
-water
-sand
-whales
-water
-What is the ground made of?
-water
-dirt
-whales
-dirt
-What cooks food the fastest?
-easy bake oven
-microwave
-normal over
-microwave
+What mathematical term is given to 3.14159265?
+Pi
+Pie
+Odd
+Pi
+What is 2 fifths of 555555?
+111111
+222222
+333333
+222222
+How many total seconds are there in 5 hours 20 minutes and 17 seconds?
+337
+19217
+18037
+19217
+What is 1/5 of 1/2 of 1/4 of 1760?
+44
+176
+8.8
+44
+What is the square root of 400 plus the square root of 81?
+21.9317121995
+229
+29
+29
+What number must you add to 66 and 121 to make the sum of 200?
+79
+13
+134
+13
