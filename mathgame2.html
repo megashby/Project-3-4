@@ -5,8 +5,8 @@
 		<style>
 			canvas {
 				position: absolute;
-				top: 0px;
-				left: 0px;
+				top: 30px;
+				left: 245px;
 				background: transparent;
 			}
 			#background {
@@ -18,18 +18,60 @@
 			#ship {
 				z-index: 0;
 			}
+			.score {
+				position: absolute;
+				top: 5px;
+				left: 480px;
+				color: #FF7F00;
+				font-family: Helvetica, sans-serif;
+				cursor: default;
+			}
+			.game-over {
+				position: absolute;
+				top: 310px;
+				left: 550px;
+				color: blue;
+				font-family: Helvetica, sans-serif;
+				font-size: 30px;
+				cursor: default;
+				display: none;
+			}
+			.game-over span {
+				font-size: 20px;
+				cursor: pointer;
+				position: relative;
+				left: 50px;
+			}
+			.game-over span:hover {
+				color: #FFD700;
+			}
+      .game-over2 span {
+				font-size: 20px;
+				cursor: pointer;
+				position: relative;
+				left: 1200px;
+        color: blue;
+			}
+			.game-over2 span:hover {
+				color: red;
+			}
 		</style>
+
 	</head>
-	<body >
+	<body background = "https://i.pinimg.com/originals/84/da/32/84da322bbed00b96719a72767311a7af.jpg">
 		<p ALIGN = RIGHT> Press the down key to load ship </p>
 		<p ALIGN = RIGHT> Use left and right key to move, hit space to shoot <p>
+		<p ALIGN = RIGHT><font size = "3" face = "verdana"> Score the integral of (x^3)+8, a=1, b=3 </font> <p>
 		<!-- The canvas for the panning background -->
-		<canvas id="background" width="1000" height="750">
+		<canvas id="background" width="800" height="700">
 		</canvas>
-		<canvas id = "main" width = "1000" height = "1000">
+		<canvas id = "main" width = "800" height = "1000">
 		</canvas>
-		<canvas id = "ship" width = "1000" height = "750">
+		<canvas id = "ship" width = "800" height = "600">
 		</canvas>
+		<div class="score">SCORE: <span id="score"></span></div>
+		<div class="game-over" id="game-over">GAME OVER<p><span onclick= "game.restart()">Restart</span></p></div>
+	  <div class="game-over2" id="game-over2"><p><span onclick= "location.href = 'gameshomepage.html' ">Return to homepage</span></p></div>
 		<script src="mathgame2.js"></script>
 	</body>
 </html>
