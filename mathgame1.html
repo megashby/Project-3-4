@@ -25,11 +25,23 @@
 			.game-over span:hover {
 				color: #FFD700;
 			}
+      .game-over2 span {
+				font-size: 20px;
+				cursor: pointer;
+				position: relative;
+				left: 50px;
+        color: blue;
+			}
+			.game-over2 span:hover {
+				color: red;
+			}
       </style>
 </head>
 <p> <font size = "30" face = "verdana"> try to hit the quadrilateral </font> </p>
 <body background = "https://i.pinimg.com/originals/84/da/32/84da322bbed00b96719a72767311a7af.jpg">
+
 	<div class="game-over" id="game-over">GAME OVER<p><span onclick= "restart()">Restart</span></p></div>
+  <div class="game-over2" id="game-over2"><p><span onclick= "location.href = 'gameshomepage.html' ">Return to homepage</span></p></div>
   <canvas id= "myCanvas" width= "480" height= "360" style="border: 5px solid black;"></canvas>
   <script>
   var canvas = document.getElementById("myCanvas");
