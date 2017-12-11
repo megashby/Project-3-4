@@ -46,7 +46,7 @@
   <script>
   document.writeln('<p><input type = "text" value = "Enter Username" name = "username" id = "username" /></p>');
   // writes the submit button at the end of the quiz
-  document.writeln('<p><input type="submit" value="Show Score" class = "btn btn-info" id= "ad_button" onclick="Score()" /></p><p style="display:none"></p>');
+  document.writeln('<p><input type="submit" value="Show Score" class = "btn btn-info" id= "ad_button" onclick="showTotalScore()" /></p><p style="display:none"></p>');
 
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
@@ -233,6 +233,9 @@
     document.location.reload();
 
 	}
+  function showTotalScore() {
+    callServer("math", score);
+  }
   function collisionDetection() {
       for(c=0; c<brickColumnCount; c++) {
           for(r=0; r<brickRowCount; r++) {
@@ -247,8 +250,7 @@
                         gameOver();
                         dy = 0
                         dx = 0
-                        callServer("math", score);
-                        updatePage();
+
 
                     }
                 }
