@@ -35,6 +35,26 @@
       .game-over2 span:hover {
         color: red;
       }
+      .game-over3 span {
+        font-size: 20px;
+        cursor: pointer;
+        position: relative;
+        left: 90px;
+        color: blue;
+      }
+      .game-over3 span:hover {
+        color: red;
+      }
+      .game-over4 span {
+        font-size: 20px;
+        cursor: pointer;
+        position: relative;
+        left: 100px;
+        color: green;
+      }
+      .game-over4 span:hover {
+        color: red;
+      }
       </style>
 </head>
 <p> <font size = "30" face = "verdana"> try to hit the quadrilateral </font> </p>
@@ -42,6 +62,8 @@
 
   <div class="game-over" id="game-over">GAME OVER<p><span onclick= "restart()">Restart</span></p></div>
   <div class="game-over2" id="game-over2"><p><span onclick= "location.href = 'gameshomepage.html' ">Return to homepage</span></p></div>
+  <div class="game-over3" id="game-over3"><p><input type = "text" value = "Enter Username" name = "username" id = "username" /></p></span></p></div>
+  <div class="game-over4" id="game-over4"><p><input type="submit" value="Show Score" onclick="showTotalScore()"></p></div>
   <canvas id= "myCanvas" width= "480" height= "360" style="border: 5px solid black;"></canvas>
   <script>
   var canvas = document.getElementById("myCanvas");
@@ -221,10 +243,10 @@
     document.getElementById('game-over').style.display = "none";
     document.location.reload();
   }
-  
+
   function showTotalScore(){
     // alert('hello');
-    callServer("math", 5);
+    callServer("math", 1);
   }
 
   function collisionDetection() {
@@ -238,7 +260,7 @@
                     score += 1;
                     if(score == 1) {
                         gameOver();
-                        document.writeln('<p><input type = "text" value = "Enter Username" id = "username" /><input type="submit" value="Show Score" onclick= "showTotalScore();" /></p>');
+
                         dy = 0
                         dx = 0
                     }
