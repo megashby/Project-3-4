@@ -25,17 +25,13 @@ demo.gameQuiz = function(){};
 demo.gameQuiz.prototype = {
     preload: function(){
         
-        
-
         game.load.image('explosion', 'assets/Explosion');
         game.load.image('ball', 'assets/blue_ball.png');
         game.load.audio('crowd_boo', "assets/crowd_boo.mp3");
         game.load.audio('crowd_cheer', "assets/crowd_cheer.mp3");
         game.load.audio('party_horn', "assets/party_horn.mp3")
         game.load.audio('music', "assets/quack_song.mp3")
-        game.load.image('confetti', 'assets/confetti');
-
-        
+        game.load.image('confetti', 'assets/confetti');     
 
         //  Phaser can load Text files.
 
@@ -44,8 +40,7 @@ demo.gameQuiz.prototype = {
         //  If loading a file from outside of the domain in which the game is running 
         //  a 'Access-Control-Allow-Origin' header must be present on the server.
         //  No parsing of the text file is performed, it's literally just the raw data.
-
-        game.load.text('txt', quiz);
+        getQuiz(quiz);
     },
     
     create: function(){
@@ -113,7 +108,6 @@ demo.gameQuiz.prototype = {
         counter = 0;
         newRound(questions, answers, counter);
     
-        console.log(counter);
         questionText.fixedToCamera = true;
         
 },
@@ -157,7 +151,6 @@ function makeSelection(){
 
 function correct_collisionHandler (choice, ball) {
 
-    //  When a bullet hits an carrot we kill them both
     choice.kill();
     ball.kill();
     score += 1;
@@ -167,12 +160,11 @@ function correct_collisionHandler (choice, ball) {
     endRound();
     counter += 1;
     newRound(questions, answers, counter);
-    console.log(counter)
+
 }
 
 function collisionHandler (choice, ball) {
 
-    //  When a bullet hits an carrot we kill them both
     choice.kill();
     ball.kill();
     score -= 1;
@@ -203,7 +195,6 @@ function newRound(questions, answers, counter){
         fans_active = false;
         nans_active = false;
         quiz_len = (questions.length)-1;
-        console.log(quiz_len);
         
         if (quiz_len == counter){
             endRound()
@@ -219,7 +210,7 @@ function newRound(questions, answers, counter){
             correct_ball.addChild(correct_label);
             correct_ball.inputEnabled = true;
             correct_ball.input.useHandCursor = true;
-            console.log("created at answer 1")
+
         }
         else{
             ans_ball = game.add.sprite(400, 500, 'ball');
@@ -240,7 +231,7 @@ function newRound(questions, answers, counter){
             correct_ball.addChild(correct_label);
             correct_ball.inputEnabled = true;
             correct_ball.input.useHandCursor = true;
-            console.log("created at answer 2")
+           
             
         }
         else{
@@ -262,7 +253,7 @@ function newRound(questions, answers, counter){
             correct_ball.addChild(correct_label);
             correct_ball.inputEnabled = true;
             correct_ball.input.useHandCursor = true;
-            console.log("created at answer 3")
+
             
         }
         else{
@@ -275,6 +266,10 @@ function newRound(questions, answers, counter){
             Nans_ball.addChild(ans3_label)
             nans_active = true;
         }
+    
+    if(typeof correct_ball !== "undefined"){
+        return false;
+    }
 }
 
 function endRound(){
@@ -301,4 +296,15 @@ function checkIfGameover(quiz_len, counter){
 function GameOver(){
     console.log("GAME OVER");
     game.state.start("gameover")
+}
+
+function getQuiz(quiz){
+    try{
+        game.load.text('txt', quiz);
+        return true;
+    }
+    catch(err){
+        console.log("Quiz not found!")
+        return false;
+    }
 }
