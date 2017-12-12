@@ -20,6 +20,15 @@ demo.gameover.prototype = {
 //        quiz = "../englishquiz.txt"
 //        quiz = "../mathquiz.txt"
 //        quiz = "../advanmathsciquiz.txt"
+        
+        var xhr;
+        if (window.ActiveXObject){
+            xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        else if (window.XMLHttpRequest){
+            xhr = new XMLHttpRequest();
+        }
+        
         if(score < 0){
             var score = 0;
         }
