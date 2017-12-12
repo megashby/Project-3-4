@@ -56,7 +56,7 @@ function updatePage()
     if ((xhr.readyState == 4) && (xhr.status == 200))
     {
       var response = xhr.responseText;
-      var responsetext = 'Your new score in math is '
+      var responsetext = 'Your new score in' +subject + 'is '
       window.alert(responsetext.concat(response));
     }
   }
