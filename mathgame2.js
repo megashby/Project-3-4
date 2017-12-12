@@ -12,6 +12,36 @@ function init() {
  * are only ever created once. This type of object is known as a
  * singleton.
  */
+ var xhr;
+ if (window.ActiveXObject)
+ {
+ 	xhr = new ActiveXObject("Microsoft.XMLHTTP");
+ }
+ else if (window.XMLHttpRequest)
+ {
+ 	xhr = new XMLHttpRequest();
+ }
+ function callServer(subject, score)
+ {
+
+ 	var subject = subject;
+ 	var score = score;
+ 	var username = document.getElementById('username').value;
+ 	alert(username)
+ 	var url = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/databaseincrementscore.php?username="+username+"&subject="+subject+"&subjectscore="+score;
+ 	xhr.open('GET', url, true);
+ 	xhr.onreadystatechange = updatePage;
+ 	xhr.send(null);
+ }
+ function updatePage()
+ {
+ 	if ((xhr.readyState == 4) && (xhr.status == 200))
+ 	{
+ 		var response = xhr.responseText;
+ 		var responsetext = 'Your new score in math is '
+ 		window.alert(responsetext.concat(response));
+ 	}
+ }
 var imageRepository = new function() {
 	// Define images
 	this.background = new Image();
@@ -47,7 +77,7 @@ var imageRepository = new function() {
 
 	// Set images src
   this.background.src = "http://eskipaper.com/images/math-wallpaper-1.jpg";
-	this.spaceship.src = "http://www.iconninja.com/files/844/540/40/multiple-triangles-triangle-icon.png";
+	this.spaceship.src = "https://image.flaticon.com/icons/png/128/251/251978.png";
 	this.bullet.src = "https://raw.githubusercontent.com/straker/galaxian-canvas-game/master/part5/imgs/bullet.png";
 	this.enemy.src = "https://raw.githubusercontent.com/straker/galaxian-canvas-game/master/part5/imgs/enemy.png";
 	this.enemyBullet.src = "https://raw.githubusercontent.com/straker/galaxian-canvas-game/master/part5/imgs/bullet_enemy.png";
@@ -781,12 +811,17 @@ function Game() {
  * function must be a gobal function and cannot be within an
  * object.
  */
+function showTotalScore(){
+     // alert('hello');
+     callServer("math", game.playerScore());
+}
 function animate() {
 	// Insert objects into quadtree
   document.getElementById("score").innerHTML =game.playerScore;
   if (game.playerScore == 36) {
     game.ship.alive = false;
     game.gameOver();
+		showTotalScore();
 
   }
 	game.quadTree.clear();

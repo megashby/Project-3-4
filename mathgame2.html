@@ -55,6 +55,26 @@
 			.game-over2 span:hover {
 				color: red;
 			}
+			.game-over3 span {
+        font-size: 20px;
+        cursor: pointer;
+        position: relative;
+        left: 90px;
+        color: blue;
+      }
+      .game-over3 span:hover {
+        color: red;
+      }
+      .game-over4 span {
+        font-size: 20px;
+        cursor: pointer;
+        position: relative;
+        left: 100px;
+        color: green;
+      }
+      .game-over4 span:hover {
+        color: red;
+      }
 		</style>
 
 	</head>
@@ -72,6 +92,8 @@
 		<div class="score">SCORE: <span id="score"></span></div>
 		<div class="game-over" id="game-over">GAME OVER<p><span onclick= "game.restart()">Restart</span></p></div>
 	  <div class="game-over2" id="game-over2"><p><span onclick= "location.href = 'gameshomepage.html' ">Return to homepage</span></p></div>
+		<div class="game-over3" id="game-over3"><p><input type = "text" value = "Enter Username" name = "username" id = "username" /></p></span></p></div>
+	  <div class="game-over4" id="game-over4"><p><input type="submit" value="Show Score" onclick="showTotalScore()"></p></div>
 		<script src="mathgame2.js"></script>
 	</body>
 </html>
