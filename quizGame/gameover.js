@@ -2,7 +2,6 @@
 demo.gameover = function(){};
 demo.gameover.prototype = {
     create: function () {
-
         var gameoverLabel = stateText = game.add.text(500, 300, ' ', {font: '50px Arial', fill: '#FFF'});
         game.stage.backgroundColor = '#0E9200';
 
@@ -17,12 +16,47 @@ demo.gameover.prototype = {
         //  We'll set the bounds to be from x0, y100 and be 600px wide by 100px high
         //text.setTextBounds(0, 100, 600, 100);
         music.mute = true;
+//        quiz = "../sciencequiz.txt"
+//        quiz = "../englishquiz.txt"
+//        quiz = "../mathquiz.txt"
+//        quiz = "../advanmathsciquiz.txt"
+        if(score < 0){
+            var score = 0;
+        }
+        if(quiz == "../sciencequiz.txt"){
+            callServer("science", score);
+        }
+        else if(quiz == "../englishquiz.txt"){
+            callServer("english", score);
+        }
+        else if(quiz == "../mathquiz.txt"){
+            callServer("math", score);
+        }
+//        else if(quiz == "../advanmathsciquiz.txt"){
+//            //callServer("advance math/science", score);
+//            pass
+//        }
     },
-
     update: function () {
     }
 };
 
-function changeState(i, stateNum){
-    game.state.start('menu',false,true);
+function callServer(subject, score){
+    var subject = subject;
+    var score = score;
+    var username = document.getElementById('username').value;
+    alert(username)
+    var url = "https://www.cs.utexas.edu/~megashby/Software_Engineering/Project34/databaseincrementscore.php?username="+username+"&subject="+subject+"&subjectscore="+score;
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = updatePage;
+    xhr.send(null);
 }
+function updatePage()
+  {
+    if ((xhr.readyState == 4) && (xhr.status == 200))
+    {
+      var response = xhr.responseText;
+      var responsetext = 'Your new score in' +subject + 'is '
+      window.alert(responsetext.concat(response));
+    }
+  }
