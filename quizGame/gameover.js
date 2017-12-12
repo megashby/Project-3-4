@@ -29,9 +29,7 @@ demo.gameover.prototype = {
             xhr = new XMLHttpRequest();
         }
         
-        if(score < 0){
-            var score = 0;
-        }
+        cleanScore(score);
         if(quiz == "../sciencequiz.txt"){
             callServer("science", score);
         }
@@ -69,3 +67,12 @@ function updatePage()
       window.alert(responsetext.concat(response));
     }
   }
+
+function cleanScore(score){
+    if(score > 0){
+        return True
+    }
+    else{
+        score = 0;
+    }
+}

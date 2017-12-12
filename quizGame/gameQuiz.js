@@ -289,7 +289,7 @@ function endRound(){
 }
 function checkIfGameover(quiz_len, counter){
     if(counter > quiz_len){
-        GameOver();
+        return true
     }
     
 }
