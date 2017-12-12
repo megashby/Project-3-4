@@ -818,7 +818,7 @@ function showTotalScore(){
 function animate() {
 	// Insert objects into quadtree
   document.getElementById("score").innerHTML =game.playerScore;
-  if (game.playerScore == 36) {
+  if (game.playerScore == 12) {
     game.ship.alive = false;
     game.gameOver();
 		showTotalScore();
